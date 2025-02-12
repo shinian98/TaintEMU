@@ -43,6 +43,8 @@ mkdir build && cd build
 make -j$(nproc)
 ```
 
+:memo: The complete user guide and quick examples can be found in the [wiki](https://github.com/shinian98/TaintEMU/wiki).
+
 ## Contributing
 We welcome improvements through Issues or development contributions via PRs:
 1. Fork this repository
