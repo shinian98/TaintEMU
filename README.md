@@ -24,6 +24,7 @@ TaintEMU is a system-level dynamic taint analysis tool based on QEMU, capable of
 ## Compilation Guide
 
 ### Requirements
+- x86-64 CPU with SIMD instruction support
 - Linux operating system
 - QEMU dependencies (ninja, glib2, pixman, etc.)
 
