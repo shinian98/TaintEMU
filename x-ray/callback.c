@@ -154,15 +154,6 @@ static void taint_usb_serial (CPUArchState* env, uint64_t addr) {
 
 #define ADDR_RDS_write_to_mem 0x400f7e
 
-static void taint_full_nelson (CPUArchState* env, uint64_t addr) {
-
-}
-
-
-static void taint_half_nelson (CPUArchState* env, uint64_t addr) {
-
-}
-
 static void taint_rds (CPUArchState* env, uint64_t addr) {
     #ifdef TARGET_X86_64
     CPUArchState* shadow_env;
@@ -173,22 +164,6 @@ static void taint_rds (CPUArchState* env, uint64_t addr) {
         printf ("X-Ray : got write_to_mem. tainting *SHADOW* RSI\n");
     }
     #endif
-}
-
-static void taint_ptrace_kmod2 (CPUArchState* env, uint64_t addr) {
-
-}
-
-static void taint_memodipper (CPUArchState* env, uint64_t addr) {
-
-}
-
-static void taint_perf_swevent (CPUArchState* env, uint64_t addr) {
-
-}
-
-static void taint_timeoutpwn (CPUArchState* env, uint64_t addr) {
-
 }
 
 #define ADDR_NASM_prepreproc_SOURCE 0x41A51D

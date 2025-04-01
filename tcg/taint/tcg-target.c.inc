@@ -2746,22 +2746,35 @@ static inline void tcg_out_op(TCGContext *s, TCGOpcode opc,
     OP_32_64(add):
         c = ARITH_ADD;
         goto gen_arith;
-    OP_32_64(sub):
-        c = ARITH_SUB;
-        goto gen_arith;
     OP_32_64(and):
         c = ARITH_AND;
         goto gen_arith;
     OP_32_64(or):
         c = ARITH_OR;
         goto gen_arith;
-    OP_32_64(xor):
-        c = ARITH_XOR;
-        goto gen_arith;
     gen_arith:
 
         /* TAINT */
         tcg_out_or_vec (s, shadow_reg (a0), shadow_reg (a0), shadow_reg (a2));
+        /* END */
+        tgen_arithr(s, c + rexw, a0, a2);
+    
+        break;
+
+    OP_32_64(xor):
+        c = ARITH_XOR;
+        goto gen_arith1;
+    OP_32_64(sub):
+        c = ARITH_SUB;
+        goto gen_arith1;
+    gen_arith1:
+
+        /* TAINT */
+        if (a0 == a2) {
+            tcg_out_xor_vec (s, shadow_reg (a0), shadow_reg (a0), shadow_reg (a0));
+        } else {
+            tcg_out_or_vec (s, shadow_reg (a0), shadow_reg (a0), shadow_reg (a2));
+        }
         /* END */
         tgen_arithr(s, c + rexw, a0, a2);
     

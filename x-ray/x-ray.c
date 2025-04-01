@@ -326,7 +326,7 @@ TVMState * x_ray_get_tvm_state (void) {
 #define MAX_PROC_NUM 10000
 
 static TVM_task_struct * find_init_task (CPUState *cpu, uint64_t start) {
-    TVM_task_struct *ts;
+    TVM_task_struct *ts, *ts_next;
     ts = load_task_struct (cpu, start);
     xray.tvm.init_task_addr = ts->addr;
     int i = 0;
@@ -335,8 +335,13 @@ static TVM_task_struct * find_init_task (CPUState *cpu, uint64_t start) {
             xray.tvm.init_task_addr = ts->addr;
             return ts;
         }
+        
+        ts_next = load_task_struct (cpu, ts->next_task);
         free (ts);
-        ts = load_task_struct (cpu, ts->next_task);
+        ts = ts_next;
+    }
+    if (i == MAX_PROC_NUM) {
+        free (ts);
     }
     printf ("x-ray: init_task not found.\n");
     return NULL;

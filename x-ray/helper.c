@@ -23,6 +23,7 @@ void HELPER (aarch64_update_current_task) (CPUArchState *env) {
     next_ts_addr = env->xregs[1];
     CPUState* cpu = env_cpu (env);
     ts = x_ray_update_current_task (cpu, next_ts_addr);
+    (void)ts;
     // if (ts != NULL) {
     //     cpu->current = *ts;
     // }
@@ -47,6 +48,7 @@ void HELPER (armhf_update_current_task) (CPUArchState *env) {
     next_ts_addr = env->regs[1];
     CPUState* cpu = env_cpu (env);
     ts = x_ray_update_current_task (cpu, next_ts_addr);
+    (void)ts;
     // printf ("X-Ray: currently running: [%d]%s\n", ts->pid, ts->comm);
     #endif
 }
