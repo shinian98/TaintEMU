@@ -37,6 +37,7 @@ void HELPER (amd64_update_current_task) (CPUArchState *env) {
     next_ts_addr = env->regs[6];
     CPUState* cpu = env_cpu (env);
     ts = x_ray_update_current_task (cpu, next_ts_addr);
+    (void)ts;
     // printf ("X-Ray: currently running: [%d]%s\n", ts->pid, ts->comm);
     #endif
 }
@@ -60,6 +61,7 @@ void HELPER (i386_update_current_task) (CPUArchState *env) {
     TVM_task_struct *ts;
     CPUState* cpu = env_cpu (env);
     ts = x_ray_update_current_task (cpu, next_ts_addr);
+    (void)ts;
     // printf ("X-Ray: currently running: [%d]%s\n", ts->pid, ts->comm);
     #endif
 }
@@ -71,6 +73,7 @@ void HELPER (m68k_update_current_task) (CPUArchState *env) {
     TVM_task_struct *ts;
     CPUState* cpu = env_cpu (env);
     ts = x_ray_update_current_task (cpu, next_ts_addr);
+    (void)ts;
     // printf ("X-Ray: currently running: [%d]%s\n", ts->pid, ts->comm);
     #endif
 }
@@ -82,6 +85,7 @@ void HELPER (mips64_update_current_task) (CPUArchState *env) {
     next_ts_addr = env->active_tc.gpr[5];
     CPUState* cpu = env_cpu (env);
     ts = x_ray_update_current_task (cpu, next_ts_addr);
+    (void)ts;
     // printf ("X-Ray: currently running: [%d]%s\n", ts->pid, ts->comm);
     #endif
 }
@@ -95,6 +99,7 @@ void HELPER (ppc_update_current_task) (CPUArchState *env) {
     next_ts_addr = env->gpr[4];
     CPUState* cpu = env_cpu (env);
     ts = x_ray_update_current_task (cpu, next_ts_addr);
+    (void)ts;
     // printf ("X-Ray: currently running: [%d]%s\n", ts->pid, ts->comm);
     #endif
     #endif
@@ -107,6 +112,7 @@ void HELPER (ppc64_update_current_task) (CPUArchState *env) {
     next_ts_addr = env->gpr[4];
     CPUState* cpu = env_cpu (env);
     ts = x_ray_update_current_task (cpu, next_ts_addr);
+    (void)ts;
     // // printf ("X-Ray: currently running: [%d]%s\n", ts->pid, ts->comm);
     #endif
 }
@@ -118,6 +124,7 @@ void HELPER (riscv64_update_current_task) (CPUArchState *env) {
     next_ts_addr = env->gpr[11];
     CPUState* cpu = env_cpu (env);
     ts = x_ray_update_current_task (cpu, next_ts_addr);
+    (void)ts;
     // // printf ("X-Ray: currently running: [%d]%s\n", ts->pid, ts->comm);
     #endif
 }
@@ -129,6 +136,7 @@ void HELPER (s390x_update_current_task) (CPUArchState *env) {
     next_ts_addr = env->regs[3];
     CPUState* cpu = env_cpu (env);
     ts = x_ray_update_current_task (cpu, next_ts_addr);
+    (void)ts;
     // // printf ("X-Ray: currently running: [%d]%s\n", ts->pid, ts->comm);
     #endif
 }

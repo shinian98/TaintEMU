@@ -8,8 +8,8 @@ TaintEMU is a system-level dynamic taint analysis tool based on QEMU, capable of
 ## Key Features
 ✅ **Multi-architecture Support**  
 - Select target instruction sets via compile-time parameters (e.g., `aarch64-softmmu`/`x86_64-softmmu`)
-- Supports all hardware architectures natively supported by QEMU
 - Extend support for new instruction sets without modifying core code
+- The taint tracking feature currently supports: arm32, aarch64, i386, x86-64, mips, mips64, ppc, ppc64, s390x, riscv32, riscv64
 
 🚀 **High Performance**  
 - Taint tracking logic directly compiled into host machine code

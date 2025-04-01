@@ -11,6 +11,12 @@ static void taint_usb_serial (CPUArchState* env, uint64_t addr) {
     char buf [1024];
     int i;
     char c;
+    (void)cnt;
+    (void)urb_ptr;
+    (void)data_ptr;
+    (void)buf;
+    (void)i;
+    (void)c;
     #ifdef TARGET_AARCH64
     #define URB_ACTUAL_LENGTH 0x84
     #define URB_TRANSFER_BUFFER 0x60
@@ -24,7 +30,7 @@ static void taint_usb_serial (CPUArchState* env, uint64_t addr) {
         cpu_stb_taint (env, data_ptr + i, 0xFF);
         buf[i] = c;
     }
-    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, data_ptr);
+    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, (uint64_t)data_ptr);
     #elif defined (TARGET_ARM)
     #define URB_ACTUAL_LENGTH 0x60
     #define URB_TRANSFER_BUFFER 0x40
@@ -42,7 +48,7 @@ static void taint_usb_serial (CPUArchState* env, uint64_t addr) {
         cpu_stb_taint (env, data_ptr + i, 0xFF);
         buf[i] = c;
     }
-    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, data_ptr);
+    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, (uint64_t)data_ptr);
 
 
     #elif defined (TARGET_I386)
@@ -61,7 +67,7 @@ static void taint_usb_serial (CPUArchState* env, uint64_t addr) {
         buf[i] = c;
         printf ("ftdi_process_read_urb: input char: %c\n", c);
     }
-    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, data_ptr);
+    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, (uint64_t)data_ptr);
 
 
     #elif defined (TARGET_M68K)
@@ -82,7 +88,7 @@ static void taint_usb_serial (CPUArchState* env, uint64_t addr) {
         cpu_stb_taint (env, data_ptr + i, 0xFF);
         buf[i] = c;
     }
-    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, data_ptr);
+    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, (uint64_t)data_ptr);
 
     #elif defined (TARGET_PPC64)
     #define URB_ACTUAL_LENGTH 0x84
@@ -97,7 +103,7 @@ static void taint_usb_serial (CPUArchState* env, uint64_t addr) {
         cpu_stb_taint (env, data_ptr + i, 0xFF);
         buf[i] = c;
     }
-    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, data_ptr);
+    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, (uint64_t)data_ptr);
 
     #elif defined (TARGET_PPC)
     #define URB_ACTUAL_LENGTH 0x58
@@ -112,7 +118,7 @@ static void taint_usb_serial (CPUArchState* env, uint64_t addr) {
         cpu_stb_taint (env, data_ptr + i, 0xFF);
         buf[i] = c;
     }
-    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%X]\n", cnt, data_ptr);
+    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, (uint64_t)data_ptr);
 
     #elif defined (TARGET_RISCV64)
     #define URB_ACTUAL_LENGTH 0x84
@@ -127,7 +133,7 @@ static void taint_usb_serial (CPUArchState* env, uint64_t addr) {
         cpu_stb_taint (env, data_ptr + i, 0xFF);
         buf[i] = c;
     }
-    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, data_ptr);
+    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, (uint64_t)data_ptr);
 
     #elif defined (TARGET_S390X)
     #define URB_ACTUAL_LENGTH 0x84
@@ -143,7 +149,7 @@ static void taint_usb_serial (CPUArchState* env, uint64_t addr) {
         printf ("ftdi_process_read_urb: input char: %c\n", c);
         buf[i] = c;
     }
-    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, data_ptr);
+    printf ("ftdi_process_read_urb: tainting %d bytes data to [0x%lX]\n", cnt, (uint64_t)data_ptr);
 
     #else
     /* Do nothing */
