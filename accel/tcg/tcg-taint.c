@@ -3,6 +3,8 @@
 #include "exec/exec-all.h"
 #include "tcg/tcg-taint.h"
 
+#ifdef CONFIG_TCG_TAINT
+
 CPUArchState * te_get_shadow_env (CPUArchState *env) {
     CPUState *cs = env_cpu (env);
     return (CPUArchState*) &(cs->shadow_env);
@@ -17,3 +19,5 @@ uint64_t * te_get_shadow_args (CPUArchState *env) {
     CPUState *cs = env_cpu (env);
     return (uint64_t*) &(cs->shadow_reg);
 }
+
+#endif

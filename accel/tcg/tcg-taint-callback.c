@@ -4,6 +4,8 @@
 #include "tcg/tcg-taint.h"
 #include "sysemu/x-ray.h"
 
+#ifdef CONFIG_TCG_TAINT
+
 void
 taint_write_notify (uint64_t addr, uint64_t taint, uint64_t val,CPUArchState *env) {
     /* Write Your Code Here*/
@@ -127,3 +129,6 @@ taint_exec_notify (uint64_t addr, uint64_t taint) {
     /* Write Your Code Here*/
     // printf ("exec notify\n");
 }
+
+
+#endif
