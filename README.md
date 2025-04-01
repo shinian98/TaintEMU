@@ -14,7 +14,7 @@ TaintEMU is a system-level dynamic taint analysis tool based on QEMU, capable of
 🚀 **High Performance**  
 - Taint tracking logic directly compiled into host machine code
 - Deep optimization during TCG dynamic binary translation phase
-- 3-5x performance improvement compared to traditional instrumentation methods
+- More efficient than traditional instrumentation methods
 
 🔌 **Seamless Integration**  
 - Independent taint tracking module design
@@ -25,7 +25,7 @@ TaintEMU is a system-level dynamic taint analysis tool based on QEMU, capable of
 
 ### Requirements
 - Linux operating system
-- QEMU dependencies (zlib, glib2, pixman, etc.)
+- QEMU dependencies (ninja, glib2, pixman, etc.)
 
 ### Build Steps
 ```bash
