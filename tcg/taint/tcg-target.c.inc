@@ -1796,16 +1796,6 @@ static void __attribute__((unused)) tcg_out_rotli_vec (TCGContext *s, TCGReg rd,
 }
 
 static void __attribute__((unused)) tcg_out_union_vec_64 (TCGContext *s, TCGReg r) {
-    /* if we have avx512... */
-    // tcg_out_rotli_vec (s, TCG_SHADOW_TEMP0, r, MO_32, 8);
-    // tcg_out_or_vec (s, r, r, TCG_SHADOW_TEMP0);
-    // tcg_out_rotli_vec (s, TCG_SHADOW_TEMP1, r, MO_32, 16);
-    // tcg_out_or_vec (s, r, r, TCG_SHADOW_TEMP1);
-    // tcg_out_rotli_vec (s, TCG_SHADOW_TEMP2, r, MO_32, 24);
-    // tcg_out_or_vec (s, r, r, TCG_SHADOW_TEMP2);
-    // tcg_out_rotli_vec (s, TCG_SHADOW_TEMP3, r, MO_64, 32);
-    // tcg_out_or_vec (s, r, r, TCG_SHADOW_TEMP3);
-
     tcg_out_mov (s, TCG_TYPE_I64, TCG_REG_TEMP0, r);
     tcg_out_mov (s, TCG_TYPE_I64, TCG_REG_TEMP1, TCG_REG_TEMP0);
     tcg_out_mov (s, TCG_TYPE_I64, TCG_REG_TEMP3, TCG_REG_TEMP0);
@@ -1827,16 +1817,6 @@ static void __attribute__((unused)) tcg_out_union_vec_64 (TCGContext *s, TCGReg 
 }
 
 static void __attribute__((unused)) tcg_out_union_vec_32 (TCGContext *s, TCGReg r) {
-    /* if we have avx512... */
-    // tcg_out_rotli_vec (s, TCG_SHADOW_TEMP0, r, MO_32, 8);
-    // tcg_out_or_vec (s, r, r, TCG_SHADOW_TEMP0);
-    // tcg_out_rotli_vec (s, TCG_SHADOW_TEMP1, r, MO_32, 16);
-    // tcg_out_or_vec (s, r, r, TCG_SHADOW_TEMP1);
-    // tcg_out_rotli_vec (s, TCG_SHADOW_TEMP2, r, MO_32, 24);
-    // tcg_out_or_vec (s, r, r, TCG_SHADOW_TEMP2);
-    // tcg_out_rotli_vec (s, TCG_SHADOW_TEMP3, r, MO_64, 32);
-    // tcg_out_or_vec (s, r, r, TCG_SHADOW_TEMP3);
-
     tcg_out_mov (s, TCG_TYPE_I32, TCG_REG_TEMP0, r);
     tcg_out_mov (s, TCG_TYPE_I32, TCG_REG_TEMP1, TCG_REG_TEMP0);
     tcg_out_shifti(s, SHIFT_ROL, TCG_REG_TEMP1, 8);
@@ -1961,18 +1941,6 @@ static const TCGLdstHelperParam ldst_helper_param = {
 #else
 static const TCGLdstHelperParam ldst_helper_param = { };
 #endif
-
-// static void tcg_out_vec_to_pair(TCGContext *s, TCGType type,
-//                                 TCGReg l, TCGReg h, TCGReg v)
-// {
-//     int rexw = type == TCG_TYPE_I32 ? 0 : P_REXW;
-
-//     /* vpmov{d,q} %v, %l */
-//     tcg_out_vex_modrm(s, OPC_MOVD_EyVy + rexw, v, 0, l);
-//     /* vpextr{d,q} $1, %v, %h */
-//     tcg_out_vex_modrm(s, OPC_PEXTRD + rexw, v, 0, h);
-//     tcg_out8(s, 1);
-// }
 
 static void tcg_out_pair_to_vec(TCGContext *s, TCGType type,
                                 TCGReg v, TCGReg l, TCGReg h)
@@ -2914,9 +2882,6 @@ static inline void tcg_out_op(TCGContext *s, TCGOpcode opc,
         j_label[0] = s->code_ptr;
         tcg_out8 (s, 0);
         tcg_out_or_vec (s, shadow_reg (a0), shadow_reg (a0), shadow_reg (args[3]));
-        /* taint ponter later */
-        // tcg_out_or_vec (s, shadow_reg (a0), shadow_reg (a0), shadow_reg (a1));
-        // tcg_out_or_vec (s, shadow_reg (a0), shadow_reg (a0), shadow_reg (a2));
         j_label[1] = s->code_ptr;
         tcg_patch8 (j_label[0], j_label[1] - j_label[0]-1);
         /* END */
