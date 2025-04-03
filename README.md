@@ -3,7 +3,7 @@
 ![QEMU-based](https://img.shields.io/badge/Based_on-QEMU-blue?logo=qemu)
 
 ## Overview
-TaintEMU is a system-level dynamic taint analysis tool based on QEMU, capable of tracking the propagation of marked data across the entire system. By deeply integrating into QEMU's TCG (Tiny Code Generator) module, this tool achieves efficient taint propagation analysis while maintaining excellent compatibility with multiple instruction set architectures.
+TaintEMU is a system-level dynamic taint analysis tool based on QEMU, capable of tracking the propagation of labeled data across the entire system. By deeply integrating into QEMU's TCG (Tiny Code Generator) module, this tool achieves efficient taint propagation analysis while maintaining excellent compatibility with multiple instruction set architectures.
 
 ## Key Features
 ✅ **Multi-architecture Support**  
